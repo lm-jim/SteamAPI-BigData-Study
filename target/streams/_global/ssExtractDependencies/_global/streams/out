@@ -1,14 +1,14 @@
-[error] java.lang.RuntimeException: found version conflict(s) in library dependencies; some are suspected to be binary incompatible:
-[error] 
-[error] 	* org.scala-lang.modules:scala-parser-combinators_2.13:2.1.1 (early-semver) is selected over {1.1.2}
-[error] 	    +- pruebasspark:pruebasspark_2.13:0.1.0-SNAPSHOT      (depends on 2.1.1)
-[error] 	    +- org.apache.spark:spark-catalyst_2.13:3.3.0         (depends on 1.1.2)
-[error] 	    +- com.typesafe:ssl-config-core_2.13:0.4.3            (depends on 1.1.2)
-[error] 
-[error] 
-[error] this can be overridden using libraryDependencySchemes or evictionErrorLevel
-[error] 	at scala.sys.package$.error(package.scala:30)
-[error] 	at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:89)
+[error] sbt.librarymanagement.ResolveException: Error downloading org.scalanlp:breeze-viz_2.13:0.13.2
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\lmjim\.ivy2\localorg.scalanlp\breeze-viz_2.13\0.13.2\ivys\ivy.xml
+[error]   not found: https://repo1.maven.org/maven2/org/scalanlp/breeze-viz_2.13/0.13.2/breeze-viz_2.13-0.13.2.pom
+[error] 	at lmcoursier.CoursierDependencyResolution.unresolvedWarningOrThrow(CoursierDependencyResolution.scala:345)
+[error] 	at lmcoursier.CoursierDependencyResolution.$anonfun$update$38(CoursierDependencyResolution.scala:314)
+[error] 	at scala.util.Either$LeftProjection.map(Either.scala:573)
+[error] 	at lmcoursier.CoursierDependencyResolution.update(CoursierDependencyResolution.scala:314)
+[error] 	at sbt.librarymanagement.DependencyResolution.update(DependencyResolution.scala:60)
+[error] 	at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:59)
 [error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$12(LibraryManagement.scala:133)
 [error] 	at sbt.util.Tracked$.$anonfun$lastOutput$1(Tracked.scala:73)
 [error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$20(LibraryManagement.scala:146)
@@ -27,18 +27,14 @@
 [error] 	at sbt.Execute.$anonfun$submit$1(Execute.scala:282)
 [error] 	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:265)
 [error] 	at sbt.CompletionService$$anon$2.call(CompletionService.scala:64)
-[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-[error] 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
-[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
-[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
-[error] 	at java.base/java.lang.Thread.run(Thread.java:831)
-[error] (ssExtractDependencies) found version conflict(s) in library dependencies; some are suspected to be binary incompatible:
-[error] 
-[error] 	* org.scala-lang.modules:scala-parser-combinators_2.13:2.1.1 (early-semver) is selected over {1.1.2}
-[error] 	    +- pruebasspark:pruebasspark_2.13:0.1.0-SNAPSHOT      (depends on 2.1.1)
-[error] 	    +- org.apache.spark:spark-catalyst_2.13:3.3.0         (depends on 1.1.2)
-[error] 	    +- com.typesafe:ssl-config-core_2.13:0.4.3            (depends on 1.1.2)
-[error] 
-[error] 
-[error] this can be overridden using libraryDependencySchemes or evictionErrorLevel
+[error] 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+[error] 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+[error] 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+[error] 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+[error] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+[error] 	at java.lang.Thread.run(Thread.java:750)
+[error] (ssExtractDependencies) sbt.librarymanagement.ResolveException: Error downloading org.scalanlp:breeze-viz_2.13:0.13.2
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\lmjim\.ivy2\localorg.scalanlp\breeze-viz_2.13\0.13.2\ivys\ivy.xml
+[error]   not found: https://repo1.maven.org/maven2/org/scalanlp/breeze-viz_2.13/0.13.2/breeze-viz_2.13-0.13.2.pom

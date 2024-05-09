@@ -10,10 +10,9 @@ lazy val root = (project in file("."))
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "3.3.2",
   "org.apache.spark" %% "spark-sql" % "3.3.2",
-  "org.plotly-scala" %% "plotly-core" % "0.8.3",
-  "org.plotly-scala" %% "plotly-render" % "0.8.3",
   "com.typesafe.akka" %% "akka-actor-typed" % "2.7.0",
   "com.typesafe.akka" %% "akka-stream" % "2.7.0",
   "com.typesafe.akka" %% "akka-http" % "10.4.0",
-  "com.typesafe.play" %% "play-json" % "2.9.4"
+  "com.typesafe.play" %% "play-json" % "2.9.4",
+  "org.plotly-scala" %% "plotly-render" % "0.8.1"
 )
