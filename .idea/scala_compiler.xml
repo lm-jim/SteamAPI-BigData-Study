@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="PruebasSpark,proyecto_6927" />
+    <profile name="sbt 1" modules="PruebasSpark,SteamAPI_BigData_Study,proyecto_6927" />
   </component>
 </project>

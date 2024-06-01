@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PruebasSpark.iml" filepath="$PROJECT_DIR$/.idea/modules/PruebasSpark.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PruebasSpark-build.iml" filepath="$PROJECT_DIR$/.idea/modules/PruebasSpark-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SteamAPI_BigData_Study.iml" filepath="$PROJECT_DIR$/.idea/modules/SteamAPI_BigData_Study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SteamAPI_BigData_Study-build.iml" filepath="$PROJECT_DIR$/.idea/modules/SteamAPI_BigData_Study-build.iml" />
     </modules>
   </component>
 </project>

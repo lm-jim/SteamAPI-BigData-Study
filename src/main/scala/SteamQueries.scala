@@ -318,6 +318,7 @@ object SteamQueries extends App {
                 SELECT Genre, PriceFloat
                 FROM RankedValues
                 WHERE rank = 1
+                AND Genre IN ('Indie', 'Action', 'Casual', 'Adventure', 'Simulation', 'RPG', 'Strategy', 'Sports')
                 ORDER BY PriceFloat DESC
        """)
 
@@ -339,7 +340,9 @@ object SteamQueries extends App {
       .groupBy("Genre", "PriceFloat")
       .agg(count("PriceFloat").as("PriceCount"))
       .withColumn("rank", row_number().over(partitions))
-      .filter(col("rank") === 1)
+      .filter(col("rank") === 1 &&
+        col("Genre")
+          .isin("Indie", "Action", "Casual", "Adventure", "Simulation", "RPG", "Strategy", "Sports"))
       .drop("rank", "PriceCount")
       .orderBy(desc("PriceFloat"))
 
@@ -362,6 +365,7 @@ object SteamQueries extends App {
                 SELECT Category, PriceFloat
                 FROM RankedValues
                 WHERE rank = 1
+                AND Category IN ('Single-player', 'Steam Achievements', 'Downloadable Content', 'Steam Cloud', 'Full controller support', 'Multi-player')
                 ORDER BY PriceFloat DESC
        """
     )
@@ -384,7 +388,9 @@ object SteamQueries extends App {
       .groupBy("Category", "PriceFloat")
       .agg(count("PriceFloat").as("PriceCount"))
       .withColumn("rank", row_number().over(partitions))
-      .filter(col("rank") === 1)
+      .filter(col("rank") === 1 &&
+        col("Category")
+          .isin("Single-player", "Steam Achievements", "Downloadable Content", "Steam Cloud", "Full controller support", "Multi-player"))
       .drop("rank", "PriceCount")
       .orderBy(desc("PriceFloat"))
 

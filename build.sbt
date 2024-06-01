@@ -4,7 +4,7 @@ ThisBuild / scalaVersion := "2.13.10"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "PruebasSpark"
+    name := "SteamAPI_BigData_Study"
   )
 
 libraryDependencies ++= Seq(
@@ -13,6 +13,5 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor-typed" % "2.7.0",
   "com.typesafe.akka" %% "akka-stream" % "2.7.0",
   "com.typesafe.akka" %% "akka-http" % "10.4.0",
-  "com.typesafe.play" %% "play-json" % "2.9.4",
-  "org.plotly-scala" %% "plotly-render" % "0.8.1"
+  "com.typesafe.play" %% "play-json" % "2.9.4"
 )
