@@ -19,4 +19,4 @@ This University Project consists of the massive download of data from the *Steam
 * Category price Average, Median and Mode
 * Genre price Average, Median and Mode
 ---
-You can visualize the result of these queries by <a href=https://htmlpreview.github.io/?https://github.com/lm-jim/SteamAPI-BigData-Study/blob/main/PlotlyQueryRepresentations.html>clicking here</a>.
+You can visualize the result of these queries by <a href=https://lm-jim.github.io/SteamAPI-BigData-Study/index.html>clicking here</a>.
