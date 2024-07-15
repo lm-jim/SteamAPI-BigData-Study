@@ -101,6 +101,13 @@
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.16/org.scala-sbt/sbt/1.7.2/zinc-persist-core-assembly-1.7.2.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.16/org.scala-sbt/sbt/1.7.2/zinc-persist_2.12-1.7.2.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.16/org.scala-sbt/sbt/1.7.2/zinc_2.12-1.7.2.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/eed3si9n/jarjar/jarjar/1.14.0/jarjar-1.14.0.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/eed3si9n/jarjarabrams/jarjar-abrams-core_2.12/1.14.0/jarjar-abrams-core_2.12-1.14.0.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/com/eed3si9n/sbt-assembly_2.12_1.0/2.2.0/sbt-assembly-2.2.0.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/ow2/asm/asm-commons/9.6/asm-commons-9.6.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/ow2/asm/asm-tree/9.6/asm-tree-9.6.jar!/" />
+          <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/ow2/asm/asm/9.6/asm-9.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -108,8 +115,8 @@
     </orderEntry>
   </component>
   <component name="SbtModule">
-    <option name="buildForURI" value="file:/$MODULE_DIR$/../../../../../Otros%20proyectos/TFG%20Scala/Proyecto/" />
-    <option name="imports" value="SUB:DOLLAR119effdbbd793bf8cec2.`root`, _root_.sbt.Keys._, _root_.sbt.ScriptedPlugin.autoImport._, _root_.sbt.plugins.JUnitXmlReportPlugin.autoImport._, _root_.sbt.plugins.MiniDependencyTreePlugin.autoImport._, _root_.sbt._, _root_.sbt.nio.Keys._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.sbt.plugins.MiniDependencyTreePlugin, _root_.scala.xml.{TopScope=&gt;SUB:DOLLARscope}" />
+    <option name="buildForURI" value="file:/$MODULE_DIR$/../../../../../Otros%20proyectos/TFG%20Scala/SteamAPI-BigData-Study/" />
+    <option name="imports" value="SUB:DOLLAR627876655473c5f1f01e.`root`, _root_.sbt.Keys._, _root_.sbt.ScriptedPlugin.autoImport._, _root_.sbt.plugins.JUnitXmlReportPlugin.autoImport._, _root_.sbt.plugins.MiniDependencyTreePlugin.autoImport._, _root_.sbtassembly.AssemblyPlugin.autoImport._, _root_.sbt._, _root_.sbt.nio.Keys._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.sbt.plugins.MiniDependencyTreePlugin, _root_.sbtassembly.AssemblyPlugin, _root_.scala.xml.{TopScope=&gt;SUB:DOLLARscope}" />
     <option name="resolvers" value="C:\Users\lmjim\.ivy2\cache|ivy|true|Local cache, https://repo1.maven.org/maven2/|maven|public" />
   </component>
 </module>

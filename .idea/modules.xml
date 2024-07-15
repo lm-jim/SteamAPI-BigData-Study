@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SteamAPI_BigData_Study.iml" filepath="$PROJECT_DIR$/.idea/modules/SteamAPI_BigData_Study.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SteamAPI_BigData_Study-build.iml" filepath="$PROJECT_DIR$/.idea/modules/SteamAPI_BigData_Study-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils.iml" filepath="$PROJECT_DIR$/.idea/modules/utils.iml" />
     </modules>
   </component>
 </project>

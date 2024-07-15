@@ -5,11 +5,18 @@ import org.apache.spark.sql.types._
 
 object SteamQueries extends App {
 
-  val spark = SparkSession.builder().master("local").getOrCreate();
+  val N_THREADS = "*"
 
+  //Valores para la generación de resultados:
+  val USE_SQL = true; //Usar consultas directamente SQL
+  val USE_COL_EXP = true; //Usar expresiones de columnas de Spark
+
+  val spark = SparkSession.builder()
+    .master(s"local[$N_THREADS]") //Comentar para despliegue en cluster AWS EMR
+    .getOrCreate()
   spark.sparkContext.setLogLevel("ERROR")
 
-  val dataDir = "SteamAPIData/Daily"
+  val dataDir = "SteamAPIData/Daily"  //"s3://steam-api-bdstudy/SteamAPIData" //Para despliegue en cluster AWS EMR
   val mySchema = StructType(List(
     StructField("AppID", IntegerType, true),
     StructField("ProductType", StringType, true),
@@ -46,6 +53,7 @@ object SteamQueries extends App {
         .format("com.databricks.spark.csv")
         .mode("overwrite")
         .save(s"OutputCSVs/$path")
+        //.save(s"s3://steam-api-bdstudy/OutputCSVs/$path") //Para despliegue en cluster AWS EMR
     }
   }
 
@@ -54,9 +62,8 @@ object SteamQueries extends App {
 
   convertedDF.createOrReplaceTempView("steam_df")
 
-  //Valores para la generación de resultados:
-  val USE_SQL = true;        //Usar consultas directamente SQL
-  val USE_COL_EXP = true;    //Usar expresiones de columnas de Spark
+  println("Starting calculations...")
+  val startTime = System.nanoTime
 
   ////////////////////////////////
   ///////  MINICONSULTAS /////////
@@ -69,10 +76,11 @@ object SteamQueries extends App {
                 FROM steam_df
                 GROUP BY ControllerSupport""")
 
-    controllerSupportQuery.saveToCsv("SQL/GamesWithControllerSupport")
+    .saveToCsv("SQL/GamesWithControllerSupport")
   }
   if(USE_COL_EXP) {
     val controllerSuppCountDf = convertedDF.groupBy("ControllerSupport").count()
+
     val controllerSupportQuery = controllerSuppCountDf
       .withColumn("percentage", col("count") * 100 / convertedDF.count())
       .select("ControllerSupport", "percentage")
@@ -93,6 +101,7 @@ object SteamQueries extends App {
   }
   if(USE_COL_EXP) {
     val drmCountDf = convertedDF.groupBy("DRM").count()
+
     val drmQuery = drmCountDf
       .withColumn("percentage", col("count") * 100 / convertedDF.count())
       .select("DRM", "percentage")
@@ -134,8 +143,11 @@ object SteamQueries extends App {
     gamePriceDistributionQuery.saveToCsv("SQL/GamePriceDistribution")
   }
   if(USE_COL_EXP){
-    val regexpPriceDf = convertedDF.withColumn("PriceFloat", regexp_replace(col("Price"), "[$€]", ""))
-      .withColumn("PriceFloat", regexp_replace(col("PriceFloat"), ",", ".").cast("float"))
+    val regexpPriceDf = convertedDF
+      .withColumn("PriceFloat", regexp_replace(col("Price"), "[$€]", ""))
+      .withColumn("PriceFloat", regexp_replace(col("PriceFloat"), ",", ".")
+        .cast("float"))
+
     val gamePriceDistributionQuery = regexpPriceDf.groupBy("PriceFloat").count().orderBy("PriceFloat")
 
     gamePriceDistributionQuery.saveToCsv("NonSQL/GamePriceDistribution")
@@ -169,7 +181,9 @@ object SteamQueries extends App {
     osCompatibilityQuery.saveToCsv("SQL/CompatibleGames")
   }
   if(USE_COL_EXP){
-    val osCompatibilityQuery = convertedDF.groupBy("WindowsCompatible", "MacCompatible", "LinuxCompatible").count()
+    val osCompatibilityQuery = convertedDF
+      .groupBy("WindowsCompatible", "MacCompatible", "LinuxCompatible")
+      .count()
       .orderBy(desc("count"))
 
     osCompatibilityQuery.saveToCsv("NonSQL/CompatibleGames")
@@ -190,8 +204,12 @@ object SteamQueries extends App {
     categoryQuery.saveToCsv("SQL/CategoryCount")
   }
   if(USE_COL_EXP){
-    val splittedCategoriesDf = convertedDF.withColumn("Category", explode(split(col("Categories"), ",")))
-    val categoryQuery = splittedCategoriesDf.withColumn("Category", trim(col("Category"))).groupBy("Category").count()
+    val splittedCategoriesDf = convertedDF
+      .withColumn("Category", explode(split(col("Categories"), ",")))
+
+    val categoryQuery = splittedCategoriesDf
+      .withColumn("Category", trim(col("Category")))
+      .groupBy("Category").count()
       .orderBy(desc("count"))
 
     categoryQuery.saveToCsv("NonSQL/CategoryCount")
@@ -212,8 +230,12 @@ object SteamQueries extends App {
     genreQuery.saveToCsv("SQL/GenreCount")
   }
   if(USE_COL_EXP){
-    val splittedGenresDf = convertedDF.withColumn("Genre", explode(split(col("Genres"), ",")))
-    val genreQuery = splittedGenresDf.withColumn("Genre", trim(col("Genre"))).groupBy("Genre").count()
+    val splittedGenresDf = convertedDF
+      .withColumn("Genre", explode(split(col("Genres"), ",")))
+
+    val genreQuery = splittedGenresDf
+      .withColumn("Genre", trim(col("Genre")))
+      .groupBy("Genre").count()
       .orderBy(desc("count"))
 
     genreQuery.saveToCsv("NonSQL/GenreCount")
@@ -243,7 +265,8 @@ object SteamQueries extends App {
       if(USE_COL_EXP){
         val regexpPriceDf = convertedDF
           .withColumn("PriceFloat", regexp_replace(col("Price"), "[$€]", ""))
-          .withColumn("PriceFloat", regexp_replace(col("PriceFloat"), ",", ".").cast("float"))
+          .withColumn("PriceFloat", regexp_replace(col("PriceFloat"), ",", ".")
+            .cast("float"))
 
         val trimmedGenreNPrice = regexpPriceDf
           .withColumn("Genre", explode(split(col("Genres"), ",")))
@@ -251,7 +274,8 @@ object SteamQueries extends App {
           .select("Genre", "PriceFloat")
 
         trimmedGenreNPrice.groupBy("Genre")
-          .agg({if (x eq "Avg") avg("PriceFloat") else expr("approx_percentile(PriceFloat, 0.5)")}.as(s"GenrePrice$x"))
+          .agg({if (x eq "Avg") avg("PriceFloat") else expr("approx_percentile(PriceFloat, 0.5)")}
+            .as(s"GenrePrice$x"))
           .filter(col("Genre")
             .isin("Indie", "Action", "Casual", "Adventure", "Simulation", "RPG", "Strategy", "Sports"))
           .orderBy(desc(s"GenrePrice$x"))
@@ -396,6 +420,9 @@ object SteamQueries extends App {
 
     mostFrequentGenrePriceQuery.saveToCsv("NonSQL/CategoryPriceMostFrequent")
   }
+
+  val ellapsedTime = (System.nanoTime - startTime) / 1e9d
+  println(s"Calculations completed successfully in $ellapsedTime seconds.")
 
 }
 
